@@ -15,14 +15,13 @@ results_template = "BETA_alpha_0.1_beta_0.1_bound_eta_{eta}_N_{N_thetas}.csv"
 # -----------------------
 # Parameters
 # -----------------------
-etas = [0.1,0.25,0.5,0.75]   # <-- pon aquí tus etas
-#bound_template = "MC_alpha_2_beta_5_bound_eta_{}.csv"
+etas = [0.1,0.25,0.5,0.75]   
 
 greens = plt.colormaps["Greens"]
 oranges = plt.colormaps["Oranges"]
 blues = plt.colormaps["Blues"]
 
-#colors1 = [greens(i) for i in np.linspace(0.4, 1, len(etas))]
+
 colors1 =["blue", "orange","purple","pink","black"]
 colors2 = [oranges(i) for i in np.linspace(0.4, 1, len(etas))]
 colors3 = [blues(i) for i in np.linspace(0.4, 1, len(etas))]

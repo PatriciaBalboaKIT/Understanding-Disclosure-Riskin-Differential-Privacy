@@ -67,15 +67,14 @@ def I_interior(b, theta, zetas, l, u,marginal):
 def w(theta,zeta,b,p):
     w_val = (p_1(zeta,theta,b)-p)*pi(zeta)
     return w_val 
-# --- Derivadas por tramos para interiores ---
+
+# --- Derivatives ---
 def g_prime_interior(a, b, theta, p, eta):
     # límites del intervalo
     lower = a - eta
     upper = a + eta
-    # evaluar derivada usando aproximación discreta (Leibniz)
     return (w(theta,upper,b,p) - w(theta,lower,b,p))
 
-# --- Derivadas por tramos para extremos ---
 def g_prime_left(a, b, theta, p, eta):
     upper = a + eta
     return w(theta,upper,b,p)
@@ -90,7 +89,7 @@ def find_candidates_to_max_big_etas(theta,eta,p_0,b):
         if sol.converged:
             candidates.append(sol.root)
     except ValueError:
-        pass  # no hay cero, solo usar extremos
+        pass  
     candidates.append(A)
     candidates.append(B-eta)
     try:
@@ -98,7 +97,7 @@ def find_candidates_to_max_big_etas(theta,eta,p_0,b):
         if sol.converged:
             candidates.append(sol.root)
     except ValueError:
-        pass  # no hay cero, solo usar extremos
+        pass 
     candidates.append(B)
     candidates.append(A+eta)  
     return candidates 
@@ -110,7 +109,7 @@ def find_candidates_to_max(theta,eta,p_0,b):
         if sol.converged:
             candidates.append(sol.root)
     except ValueError:
-        pass  # no hay cero, solo usar extremos
+        pass  
     candidates.append(A)
     candidates.append(A+eta)
     try:
@@ -118,7 +117,7 @@ def find_candidates_to_max(theta,eta,p_0,b):
         if sol.converged:
             candidates.append(sol.root)
     except ValueError:
-        pass  # no hay cero, solo usar extremos
+        pass  
     candidates.append(B)
     candidates.append(B-eta)
     try:
@@ -126,7 +125,7 @@ def find_candidates_to_max(theta,eta,p_0,b):
         if sol.converged:
             candidates.append(sol.root)
     except ValueError:
-        pass  # no hay cero, solo usar extremos     
+        pass  
     return candidates
 # ----------------------------------------------------
 # Main
@@ -178,10 +177,10 @@ def sweep_eps(eps_values, eta, N_theta,N_zetas, M, n_jobs=n_jobs):
     CI_lower = []
     CI_upper = []
 
-    # Pool reutilizado para todos los eps
+    
     with Pool(processes=n_jobs) as pool:
         for eps in eps_values:
-            # Preparamos M tareas idénticas
+            
             tasks = [(eps, eta, N_theta, N_zetas)] * M
 
             R_samples = pool.map(_estimate_R_wrapper, tasks)
