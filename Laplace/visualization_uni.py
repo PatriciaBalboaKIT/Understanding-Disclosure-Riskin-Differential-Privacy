@@ -100,7 +100,7 @@ for eta, c_bound, c_rad, c_rero in zip(etas, colors1, colors2, colors3):
     # Plot
     # ---------
 
-    # Bound (línea gruesa)
+   
     plt.plot(
         eps_bound,
         rad_bound,
@@ -110,7 +110,7 @@ for eta, c_bound, c_rad, c_rero in zip(etas, colors1, colors2, colors3):
         zorder=2
     )
 
-    # Conectores ReRo (finos, detrás)
+   
     plt.plot(
         eps_attack,
         rero_bound,

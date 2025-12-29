@@ -187,7 +187,7 @@ if __name__ == "__main__":
             N_theta=10000
         )
 
-        # Intervalo de confianza 95%
+        
         CI_low = R_finals - 1.96 * SEs
         CI_high = R_finals + 1.96 * SEs
         

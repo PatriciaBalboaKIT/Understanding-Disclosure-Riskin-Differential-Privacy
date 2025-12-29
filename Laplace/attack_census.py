@@ -51,10 +51,10 @@ hours = (
       .dropna()
       .astype(int)
 )
-# Tomar las primeras 999 horas
+
 hours_subset = hours.iloc[:999]
 
-# Calcular la suma
+
 total_hours = hours_subset.sum()
 
 print("q(D_)=:", total_hours)
@@ -78,7 +78,7 @@ def attack(output, scale, eta):
         for a, l, u in zip(a_grid, a1, a2):
                 I=I_extremes(scale, A, domain, l, u)
                 candidates_0[a]=I
-        # encontrar el a correspondiente
+        
         attack_output = max(candidates_0, key=candidates_0.get)
 
     if  output == B:
@@ -86,7 +86,7 @@ def attack(output, scale, eta):
         for a, l, u in zip(a_grid, a1, a2):
                 I=I_extremes(scale, B, domain, l, u)
                 canditates_1[a]=I
-        # encontrar el a correspondiente
+        
         attack_output = max(canditates_1, key=canditates_1.get)
 
     else:
@@ -173,8 +173,6 @@ def experiment(epsilon,eta,mechanism_iterations):
 # ----------------------
 # Plot
 # ----------------------
-
-# You need this check for the parallelization, otherwise it gives errors:
 if __name__ == "__main__":
     plt.figure(figsize=(8, 6))
     #colors = ['blue', 'green', 'red','orange']
@@ -194,7 +192,7 @@ if __name__ == "__main__":
         for eps in epsilons:
             print(f"computing eps={eps}")
             ReRo_census[eps], Corr_census[eps], RAD_census[eps] = experiment(eps,eta,mechanism_iterations)
-        # Convertir los resultados en listas siguiendo el orden de epsilons
+    
         ReRo_list = [ReRo_census[eps] for eps in epsilons]
         Corr_list = [Corr_census[eps] for eps in epsilons]
         RAD_list = [RAD_census[eps] for eps in epsilons]

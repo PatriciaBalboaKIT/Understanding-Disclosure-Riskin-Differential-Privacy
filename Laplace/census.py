@@ -10,16 +10,6 @@ def extract_empirical_hours_distribution(
     min_h: int = 0,
     max_h: int = 100
 ):
-    """
-    Extrae la distribución empírica discreta de horas por semana.
-
-    Retorna:
-        pi_vector : np.ndarray de tamaño (max_h-min_h+1,)
-            Vector [pi_min_h, ..., pi_max_h].
-
-        pi_df : pd.DataFrame
-            DataFrame con columnas ['hours','pi'].
-    """
 
     # ===========================
     # Load
