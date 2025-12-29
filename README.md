@@ -39,6 +39,55 @@ python -m Bounds.visualization.plot_laplace
 ```
 The results are saved in the `Bounds/plots` folder.
 
+## Attacks on Laplace Mechanism
+This part discusses how to set up and recreate the experiments for the truncated Laplace mechanism (folders `Laplace`). The folder structure is as follows
+* `Laplace`: Contains the code tu run the attacks and compute the bounds for uniform distribution `*_uni.py`, Census distribution `*_census.py` and the skewed distribution to 0 and 100 `*_extreme.py`.
+* `results`: Where all results are stored in `.csv`.
+* `plots`: Where all plots are stored in `.png`.
+* `Adult.csv`: Original Census dataset in `.csv`.
+
+### Environment
+The environment is defined in `white_box_env.yml`. Create and activate with:
+```bash
+conda env create -f white_box_env.yml
+conda activate wb
+```
+
+### Data Preprocessing
+The scripts in `Lapalce` do not require additional preprocessing. 
+
+### Run Experiments
+Activate the corresponding environment
+```bash
+conda activate wb
+```
+Each attack (uniform, Census or extreme) has its script `attack_NAME.py` to run the attack on the respective distribution. Each script takes about 1 day to execute with GPU acceleration.
+
+To run an attack, from the top-level project directory run
+```bash
+python -m Laplace.attack_NAME
+```
+
+
+### Visualize results
+
+Each prior distribution has a script to process and visualize the results. After running the respective experiments, from the top-level project-directory run
+```bash
+python -m Laplace.bound_NAME
+```
+to obtain the theoretical bound and subsequently run
+
+```bash
+python -m Laplace.visualization_NAME
+```
+The results can afterwards be found in `.png` format under `Laplace/plots/*.png`
+
+Example:
+
+```bash
+python -m Laplace.visualization_census
+```
+
 
 ## Attacks on DP-SGD
 The code to run DP-SGD and compute ReRo was provided by Jamie Hayes based on the publication
@@ -83,13 +132,19 @@ to run on the Fashion dataset. Folder is either `DPSGD_fullAux` for MIA under un
 ### Visualize results
 Each folder has a script to process and visualize the results from the MNIST and Fashion datasets respectively. After running the respective experiments, from the top-level project-directory run
 ```bash
-bash $FOLDER/process_results_mnist.sh
+python -m $FOLDER.visualization.plot_mnist
 ```
 for the MNIST or 
 ```bash
-bash $FOLDER/process_results_fashion.sh
+python -m $FOLDER.visualization.plot_fashion
 ```
-for the Fashion datasets. The results can afterwards be found in `.csv`format under `$FOLDER/results/*.csv` and in `.png` format under `$FOLDER/plots/*.png`
+for the Fashion datasets. The results can afterwards be found in `.png` format under `$FOLDER/plots/*.png`
+
+Example:
+
+```bash
+python -m DPSGD_fullAux.visualization.plot_mnist
+```
 
 ## Imputation Attack
 The code and Readme for the imputation attack has been adapted from https://github.com/bargavj/EvaluatingDPML/tree/master. The relevant code can be found in the folder `Blackbox/improved_ai`. The original publication is
@@ -214,3 +269,39 @@ cd DP_Audit/LDP_Auditor
 python experiment_1.py
 ```
 Find the result documents `summary_Porto.csv` and `summary_Beijing.csv` in `LDP_Auditor/results`. The script takes about 2h to run.
+
+## Nested Monte Carlo Bounds for continuous priors
+The folde Error_control contains the code to numerically approximate Th. 4.3 for the exponential mechanism with continous priors over $[0,1]$, particularly we consider the uniform and beta distributions.
+### Environment
+The environment for running the Monte Carlo approximation is wb 
+```bash
+conda activate wb
+```
+### Run Experiments
+Ensure that the wb environment is active.
+```bash
+conda activate wb
+```
+To run the experiments, go to the top directory and execute
+```bash
+bash python -m Error_control.exp_uni
+```
+for uniform distribution and
+```bash
+bash python -m Error_control.beta_new
+```
+for beta distribution. Currently, the sample sizes are set to $N_{\theta}=N_z=N_p=1000$.
+
+The resulting RAD estimation can afterwards be found in `Error_control/results` in `.csv` format. 
+
+### Visualize Experiments
+In order to recreate the plot from Figures 3 and 4 in the long version, run
+```bash
+python -m Error_control.visualization_uni
+```
+for uniform distribution or
+```bash
+python -m Error_control.visualization_beta
+```
+for beta distribution, and imput the corresponding sampling size.
+Find the resulting plot in `Error_control/plots`.

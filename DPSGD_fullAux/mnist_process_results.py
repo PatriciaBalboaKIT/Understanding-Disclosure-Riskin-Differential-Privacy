@@ -12,7 +12,7 @@ for eps in epsilons:
     output_file = main_dir / "DPSGD_fullAux" / "results" / f"mnist_eps{eps}.csv"
     dfs = []
     for i in range(candidate_set_size):
-        df = pd.read_csv(raw_results_folder / f"mnist_eps{eps}_idx{i}_fullAux_big.csv")
+        df = pd.read_csv(raw_results_folder / f"mnist_eps{eps}.csv")
         df = df.apply(pd.to_numeric, errors="coerce")
         dfs.append(df)
     combined = pd.concat(dfs)

@@ -86,7 +86,7 @@ for x in xs:
     else:
         alphas_k.append(np.nan)
 
-plt.plot(xs, alphas_g, label=fr"ReRo bound [23]",lw=4, color="C0")
+plt.plot(xs, alphas_g, label=fr"ReRo bound",lw=4, color="C0")
 plt.plot(xs, alphas_h, label=fr"RAD bound Th.4.3", lw=4, color="#2ca02c",)
 plt.yscale("log")   # eje y logarítmico (base e)
 plt.xlabel("Accepted risk",fontsize=20)
