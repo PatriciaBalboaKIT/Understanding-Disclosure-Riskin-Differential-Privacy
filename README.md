@@ -297,7 +297,7 @@ The resulting RAD estimation can afterwards be found in `Error_control/results` 
 ### Visualize Experiments
 In order to recreate the plot from Figures 3 and 4 in the long version, run
 ```bash
-python -m Error_control.visualization_uni
+python -m Error_control.visualization_unif
 ```
 for uniform distribution or
 ```bash
