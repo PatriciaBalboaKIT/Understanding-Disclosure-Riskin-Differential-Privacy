@@ -54,7 +54,7 @@ conda activate wb
 ```
 
 ### Data Preprocessing
-The scripts in `Lapalce` do not require additional preprocessing. 
+The scripts in `Laplace` do not require additional preprocessing. 
 
 ### Run Experiments
 Activate the corresponding environment
