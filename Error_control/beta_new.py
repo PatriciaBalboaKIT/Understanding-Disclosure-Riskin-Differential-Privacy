@@ -19,8 +19,8 @@ results_template = "BETA_alpha_0.1_beta_0.1_bound_eta_{eta}_N_{N_thetas}.csv"
 #--------------------------------------------------------
 # MC simulation parameters
 #--------------------------------------------------------
-N_zetas = 500
-N_thetas = 500
+N_zetas = 1000
+N_thetas = 1000
 M=500
 #--------------------------------------------------------
 # Prior Distribution (Discrete) & Datas Domain
