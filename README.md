@@ -61,7 +61,7 @@ Activate the corresponding environment
 ```bash
 conda activate wb
 ```
-Each attack (uniform, Census or extreme) has its script `attack_NAME.py` to run the attack on the respective distribution. Each script takes about 1 day to execute with GPU acceleration.
+Each attack (uniform, Census or extreme) has its script `attack_NAME.py` to run the attack on the respective distribution. Each script takes about one hour to execute with GPU acceleration.
 
 To run an attack, from the top-level project directory run
 ```bash
